@@ -7,8 +7,6 @@ import './style.scss';
 import variations from './variations';
 import metadata from './block.json';
 
-console.log('registerBlockType', metadata);
-
 registerBlockType( metadata.name, {
 	edit: (props) => {
 		const socialLinkBlock = useSelect( ( select ) => {

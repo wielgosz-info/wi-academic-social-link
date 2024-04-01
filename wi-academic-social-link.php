@@ -27,8 +27,7 @@ function wi_academic_social_link_block_init() {
 add_action( 'init', 'wi_academic_social_link_block_init' );
 
 function wi_academic_social_link_block_register_styles() {
-	// var_dump(wp_styles()->registered);
-
+	// register styles manually to ensure they are enqueued after the social links block styles
 	wp_register_style(
 		'wielgosz-info-academic-social-link',
 		plugins_url( 'build/style-index.css', __FILE__ ),
