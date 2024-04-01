@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wielgosz-info/academic-social-link",
+  "version": "0.1.0",
+  "title": "Academic Social Link",
+  "category": "widgets",
+  "parent": [
+    "core/social-links"
+  ],
+  "description": "A copy of Gutenberg's Social Link block enabling academic icons.",
+  "icon": "smiley",
+  "textdomain": "wi-academic-social-links",
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "service": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "rel": {
+      "type": "string"
+    }
+  },
+  "usesContext": [
+    "openInNewTab",
+    "showLabels",
+    "iconColor",
+    "iconColorValue",
+    "iconBackgroundColor",
+    "iconBackgroundColorValue"
+  ],
+  "supports": {
+    "reusable": false,
+    "html": false,
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "wp-block-social-link-editor",
+  "style": "wielgosz-info-academic-social-link"
+}

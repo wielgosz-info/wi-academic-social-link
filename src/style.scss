@@ -1,0 +1,12 @@
+.wp-block-social-links:not(.is-style-logos-only) {
+	.wp-social-link-orcid-id {
+		background-color: #fff;
+		color: #A6CE39;
+	}
+}
+
+.wp-block-social-links.is-style-logos-only {
+	.wp-social-link-orcid-id {
+		color: #A6CE39;
+	}
+}
