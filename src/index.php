@@ -9,7 +9,7 @@
 
 
 /**
- * Renders the `wiegosz-info/academic-social-link` block on server.
+ * Renders the `wielgosz-info/wi-academic-social-link` block on server.
  *
  * @since 0.1.0
  *
@@ -19,12 +19,12 @@
  *
  * @return string Rendered HTML of the referenced block.
  */
-function render_block_academic_social_link( $attributes, $content, $block ) {
+function wi_academic_social_link_render_block( $attributes, $content, $block ) {
 	$open_in_new_tab = isset( $block->context['openInNewTab'] ) ? $block->context['openInNewTab'] : false;
 
 	$service     = isset( $attributes['service'] ) ? $attributes['service'] : 'Icon';
 	$url         = isset( $attributes['url'] ) ? $attributes['url'] : false;
-	$label       = ! empty( $attributes['label'] ) ? $attributes['label'] : block_academic_social_link_get_name( $service );
+	$label       = ! empty( $attributes['label'] ) ? $attributes['label'] : wi_academic_social_link_get_name( $service );
 	$rel         = isset( $attributes['rel'] ) ? $attributes['rel'] : '';
 	$show_labels = array_key_exists( 'showLabels', $block->context ) ? $block->context['showLabels'] : false;
 
@@ -49,7 +49,7 @@ function render_block_academic_social_link( $attributes, $content, $block ) {
 		$url = 'https://' . $url;
 	}
 
-	$icon               = block_academic_social_link_get_icon( $service );
+	$icon               = wi_academic_social_link_get_icon( $service );
 	$wrapper_attributes = get_block_wrapper_attributes(
 		array(
 			'class' => 'wp-social-link wp-block-social-link wp-social-link-' . $service . block_core_social_link_get_color_classes( $block->context ),
@@ -83,8 +83,8 @@ function render_block_academic_social_link( $attributes, $content, $block ) {
  *
  * @return string SVG Element for service icon.
  */
-function block_academic_social_link_get_icon( $service ) {
-	$services = block_academic_social_link_services();
+function wi_academic_social_link_get_icon( $service ) {
+	$services = wi_academic_social_link_services();
 	if ( isset( $services[ $service ] ) && isset( $services[ $service ]['icon'] ) ) {
 		return $services[ $service ]['icon'];
 	}
@@ -101,8 +101,8 @@ function block_academic_social_link_get_icon( $service ) {
  *
  * @return string Brand label.
  */
-function block_academic_social_link_get_name( $service ) {
-	$services = block_academic_social_link_services();
+function wi_academic_social_link_get_name( $service ) {
+	$services = wi_academic_social_link_services();
 	if ( isset( $services[ $service ] ) && isset( $services[ $service ]['name'] ) ) {
 		return $services[ $service ]['name'];
 	}
@@ -117,7 +117,7 @@ function block_academic_social_link_get_name( $service ) {
  *
  * @return array
  */
-function block_academic_social_link_services( ) {
+function wi_academic_social_link_services( ) {
 	$services_data = array(
 		'orcid-id' => array(
 			'name' => 'ORCID iD',
@@ -125,7 +125,7 @@ function block_academic_social_link_services( ) {
 		),
 	);
 
-	$services_data = apply_filters( 'block_academic_social_link_services', $services_data );
+	$services_data = apply_filters( 'wi_academic_social_link_services', $services_data );
 
 	return $services_data;
 }

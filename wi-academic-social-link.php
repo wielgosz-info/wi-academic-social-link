@@ -21,7 +21,7 @@ require_once __DIR__ . '/build/index.php';
 
 function wi_academic_social_link_block_init() {
 	register_block_type( __DIR__ . '/build', array(
-		'render_callback' => 'render_block_academic_social_link',
+		'render_callback' => 'wi_academic_social_link_render_block',
 	) );
 }
 add_action( 'init', 'wi_academic_social_link_block_init' );
@@ -41,8 +41,8 @@ add_action( 'enqueue_block_assets', 'wi_academic_social_link_block_register_styl
 
 function wi_add_academic_social_link_to_social_links( $metadata ) {
 	if ( $metadata['name'] === 'core/social-links' ) {
-		if ( ! in_array( 'wielgosz-info/academic-social-link', $metadata['allowedBlocks'] ) ) {
-			$metadata['allowedBlocks'][] = 'wielgosz-info/academic-social-link';
+		if ( ! in_array( 'wielgosz-info/wi-academic-social-link', $metadata['allowedBlocks'] ) ) {
+			$metadata['allowedBlocks'][] = 'wielgosz-info/wi-academic-social-link';
 		}
 	}
 
