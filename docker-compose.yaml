@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/usr/local/app
-      - wi_plugin_yarn:/usr/local/app/.yarn
+      - wi_plugin_node_modules:/usr/local/app/node_modules
       - wi_plugin_vscode:/root/.vscode-server
     secrets:
       - user_ssh_key
@@ -16,7 +16,7 @@ services:
 # Share volumes between plugin-development projects
 # since they are mostly the same for all of them.
 volumes:
-  wi_plugin_yarn:
+  wi_plugin_node_modules:
     external: true
   wi_plugin_vscode:
     external: true

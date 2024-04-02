@@ -19,6 +19,6 @@ COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 3000
-VOLUME [ "/usr/local/app", "/usr/local/app/.yarn" ]
+VOLUME [ "/usr/local/app", "/usr/local/app/node_modules" ]
 
 CMD [ "/bin/sh", "-c", "while true; do sleep 1000; done" ]
