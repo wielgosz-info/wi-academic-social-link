@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "wielgosz-info/wi-academic-social-link",
 	"version": "0.1.0",
-	"title": "Academic Social Link",
+	"title": "WI Academic Social Link",
 	"category": "widgets",
 	"parent": [ "core/social-links" ],
 	"description": "A copy of Gutenberg's Social Link block enabling academic icons.",

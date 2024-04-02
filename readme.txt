@@ -1,4 +1,4 @@
-=== Academic Social Link ===
+=== WI Academic Social Link ===
 Contributors:      Urszula Wielgosz and the WordPress Contributors
 Tags:              block, academic, social, icon
 Tested up to:      6.5

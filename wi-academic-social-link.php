@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Academic Social Link
+ * Plugin Name:       WI Academic Social Link
  * Description:       A copy of Gutenberg's Social Link block enabling academic icons.
  * Requires at least: 6.3
  * Requires PHP:      7.0
@@ -49,7 +49,7 @@ function wi_academic_social_link_block_register_styles() {
 add_action( 'enqueue_block_assets', 'wi_academic_social_link_block_register_styles' );
 
 /**
- * Adds the Academic Social Link block to the list of allowed blocks in the Social Links block.
+ * Adds the WI Academic Social Link block to the list of allowed blocks in the Social Links block.
  *
  * @param array $metadata The block type metadata.
  * @return array The block type metadata.
