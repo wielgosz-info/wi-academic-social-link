@@ -10,11 +10,15 @@
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.5.0"
-	}
+		"@wordpress/scripts": "^27.5.0",
+		"eslint": "^8.57.0",
+		"prettier": "^3.2.5",
+		"stylelint": "^16.3.1",
+		"webpack": "^5.91.0"
+	},
+	"packageManager": "yarn@4.1.1"
 }

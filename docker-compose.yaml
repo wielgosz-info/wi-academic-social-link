@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  plugin:
+    image: wielgosz-info/wi-academic-social-link:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/local/app
+      - wi_plugin_yarn:/usr/local/app/.yarn
+      - wi_plugin_vscode:/root/.vscode-server
+    secrets:
+      - user_ssh_key
+
+# Share volumes between plugin-development projects
+# since they are mostly the same for all of them.
+volumes:
+  wi_plugin_yarn:
+    external: true
+  wi_plugin_vscode:
+    external: true
+
+secrets:
+  user_ssh_key:
+    file: ~/.ssh/id_rsa
