@@ -100,7 +100,7 @@ const SocialLinkEdit = ( {
 		iconBackgroundColorValue,
 	} = context;
 	const [ showURLPopover, setPopover ] = useState( false );
-	const classes = classNames( 'wp-social-link', 'wp-social-link-' + service, {
+	const classes = classNames( 'wp-block-social-link', 'wp-social-link', 'wp-social-link-' + service, {
 		'wp-social-link__is-incomplete': ! url,
 		[ `has-${ iconColor }-color` ]: iconColor,
 		[ `has-${ iconBackgroundColor }-background-color` ]:

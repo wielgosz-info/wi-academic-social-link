@@ -2,12 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { share } from '@wordpress/icons';
 
 /**
  * Internal dependencies
  */
 import variations from './variations';
-import { ChainIcon } from './icons';
 
 /**
  * Retrieves the social service's icon component.
@@ -18,7 +18,7 @@ import { ChainIcon } from './icons';
  */
 export const getIconBySite = ( name ) => {
 	const variation = variations.find( ( v ) => v.name === name );
-	return variation ? variation.icon : ChainIcon;
+	return variation ? variation.icon : share;
 };
 
 /**
