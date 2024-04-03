@@ -40,5 +40,5 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "wp-block-social-link-editor",
-	"style": "wielgosz-info-academic-social-link"
+	"style": "file:./style-index.css"
 }
