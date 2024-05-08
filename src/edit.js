@@ -40,57 +40,50 @@ import variations from './variations';
  *
  * @return {string} Display name for social service
  */
-const getNameBySite = ( name ) => {
-	const variation = variations.find( ( v ) => v.name === name );
-	return variation ? variation.title : __( 'Social Icon' );
+const getNameBySite = (name) => {
+	const variation = variations.find((v) => v.name === name);
+	return variation ? variation.title : __('Social Icon');
 };
 
-const SocialLinkURLPopover = ( {
+const SocialLinkURLPopover = ({
 	url,
 	setAttributes,
 	setPopover,
 	popoverAnchor,
 	clientId,
-} ) => {
-	const { removeBlock } = useDispatch( blockEditorStore );
+}) => {
+	const { removeBlock } = useDispatch(blockEditorStore);
 	return (
-		<URLPopover
-			anchor={ popoverAnchor }
-			onClose={ () => setPopover( false ) }
-		>
+		<URLPopover anchor={popoverAnchor} onClose={() => setPopover(false)}>
 			<form
 				className="block-editor-url-popover__link-editor"
-				onSubmit={ ( event ) => {
+				onSubmit={(event) => {
 					event.preventDefault();
-					setPopover( false );
-				} }
+					setPopover(false);
+				}}
 			>
 				<div className="block-editor-url-input">
 					<URLInput
 						__nextHasNoMarginBottom
-						value={ url }
-						onChange={ ( nextURL ) =>
-							setAttributes( { url: nextURL } )
-						}
-						placeholder={ __( 'Enter address' ) }
+						value={url}
+						onChange={(nextURL) => setAttributes({ url: nextURL })}
+						placeholder={__('Enter address')}
 						disableSuggestions
-						onKeyDown={ ( event ) => {
+						onKeyDown={(event) => {
 							if (
-								!! url ||
+								!!url ||
 								event.defaultPrevented ||
-								! [ BACKSPACE, DELETE ].includes(
-									event.keyCode
-								)
+								![BACKSPACE, DELETE].includes(event.keyCode)
 							) {
 								return;
 							}
-							removeBlock( clientId );
-						} }
+							removeBlock(clientId);
+						}}
 					/>
 				</div>
 				<Button
-					icon={ keyboardReturn }
-					label={ __( 'Apply' ) }
+					icon={keyboardReturn}
+					label={__('Apply')}
 					type="submit"
 				/>
 			</form>
@@ -98,13 +91,13 @@ const SocialLinkURLPopover = ( {
 	);
 };
 
-const SocialLinkEdit = ( {
+const SocialLinkEdit = ({
 	attributes,
 	context,
 	isSelected,
 	setAttributes,
 	clientId,
-} ) => {
+}) => {
 	const { url, service, label, rel } = attributes;
 	const {
 		showLabels,
@@ -113,47 +106,52 @@ const SocialLinkEdit = ( {
 		iconBackgroundColor,
 		iconBackgroundColorValue,
 	} = context;
-	const [ showURLPopover, setPopover ] = useState( false );
-	const classes = classNames( 'wp-block-social-link', 'wp-social-link', 'wp-social-link-' + service, {
-		'wp-social-link__is-incomplete': ! url,
-		[ `has-${ iconBackgroundColor }-background-color` ]:
-			iconBackgroundColor,
-	} );
+	const [showURLPopover, setPopover] = useState(false);
+	const classes = classNames(
+		'wp-block-social-link',
+		'wp-social-link',
+		'wp-social-link-' + service,
+		{
+			'wp-social-link__is-incomplete': !url,
+			[`has-${iconBackgroundColor}-background-color`]:
+				iconBackgroundColor,
+		}
+	);
 
 	// Use internal state instead of a ref to make sure that the component
 	// re-renders when the popover's anchor updates.
-	const [ popoverAnchor, setPopoverAnchor ] = useState( null );
+	const [popoverAnchor, setPopoverAnchor] = useState(null);
 
-	const socialLinkName = getNameBySite( service );
+	const socialLinkName = getNameBySite(service);
 	const socialLinkLabel = label ?? socialLinkName;
-	const blockProps = useBlockProps( {
+	const blockProps = useBlockProps({
 		className: classes,
 		style: {
 			backgroundColor: iconBackgroundColorValue,
 		},
-	} );
+	});
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={ sprintf(
+					title={sprintf(
 						/* translators: %s: name of the social service. */
-						__( '%s label' ),
+						__('%s label'),
 						socialLinkName
-					) }
-					initialOpen={ false }
+					)}
+					initialOpen={false}
 				>
 					<PanelRow>
 						<TextControl
 							__nextHasNoMarginBottom
-							label={ __( 'Link label' ) }
-							help={ __(
+							label={__('Link label')}
+							help={__(
 								'Briefly describe the link to help screen reader users.'
-							) }
-							value={ label || '' }
-							onChange={ ( value ) =>
-								setAttributes( { label: value || undefined } )
+							)}
+							value={label || ''}
+							onChange={(value) =>
+								setAttributes({ label: value || undefined })
 							}
 						/>
 					</PanelRow>
@@ -162,34 +160,38 @@ const SocialLinkEdit = ( {
 			<InspectorControls group="advanced">
 				<TextControl
 					__nextHasNoMarginBottom
-					label={ __( 'Link rel' ) }
-					value={ rel || '' }
-					onChange={ ( value ) => setAttributes( { rel: value } ) }
+					label={__('Link rel')}
+					value={rel || ''}
+					onChange={(value) => setAttributes({ rel: value })}
 				/>
 			</InspectorControls>
-			<li { ...blockProps }>
+			<li {...blockProps}>
 				<Button
 					className="wp-block-social-link-anchor"
-					ref={ setPopoverAnchor }
-					onClick={ () => setPopover( true ) }
+					ref={setPopoverAnchor}
+					onClick={() => setPopover(true)}
 				>
-					<AcademicIcon service={service} color={iconColor} colorValue={iconColorValue} />
+					<AcademicIcon
+						service={service}
+						color={iconColor}
+						colorValue={iconColorValue}
+					/>
 					<span
-						className={ classNames( 'wp-block-social-link-label', {
-							'screen-reader-text': ! showLabels,
-						} ) }
+						className={classNames('wp-block-social-link-label', {
+							'screen-reader-text': !showLabels,
+						})}
 					>
-						{ socialLinkLabel }
+						{socialLinkLabel}
 					</span>
-					{ isSelected && showURLPopover && (
+					{isSelected && showURLPopover && (
 						<SocialLinkURLPopover
-							url={ url }
-							setAttributes={ setAttributes }
-							setPopover={ setPopover }
-							popoverAnchor={ popoverAnchor }
-							clientId={ clientId }
+							url={url}
+							setAttributes={setAttributes}
+							setPopover={setPopover}
+							popoverAnchor={popoverAnchor}
+							clientId={clientId}
 						/>
-					) }
+					)}
 				</Button>
 			</li>
 		</>

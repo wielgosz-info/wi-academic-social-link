@@ -1,6 +1,4 @@
-import {
-	AcademicIcon
-} from './icons';
+import { AcademicIcon } from './icons';
 
 const variations = [
 	{
@@ -8,13 +6,13 @@ const variations = [
 		name: 'orcid-id',
 		attributes: { service: 'orcid-id' },
 		title: 'ORCID iD',
-		icon: <AcademicIcon service='orcid-id' color='original' />,
+		icon: <AcademicIcon service="orcid-id" color="original" />,
 	},
 	{
 		name: 'arxiv-profile',
 		attributes: { service: 'arxiv-profile' },
 		title: 'arXiv Profile',
-		icon: <AcademicIcon service='arxiv-profile' color='original' />,
+		icon: <AcademicIcon service="arxiv-profile" color="original" />,
 	},
 ];
 
@@ -23,10 +21,10 @@ const variations = [
  * `isActive` function is used to find a variation match from a created
  *  Block by providing its attributes.
  */
-variations.forEach( ( variation ) => {
-	if ( variation.isActive ) return;
-	variation.isActive = ( blockAttributes, variationAttributes ) =>
+variations.forEach((variation) => {
+	if (variation.isActive) return;
+	variation.isActive = (blockAttributes, variationAttributes) =>
 		blockAttributes.service === variationAttributes.service;
-} );
+});
 
 export default variations;

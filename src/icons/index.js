@@ -10,16 +10,16 @@ const ORCIDiDIcon = {
 	original: ORCIDiDIconDefault,
 	black: ORCIDiDIconBlack,
 	white: ORCIDiDIconWhite,
-	['var(--wp--preset--color--black)']: ORCIDiDIconBlack,
-	['var(--wp--preset--color--white)']: ORCIDiDIconWhite,
+	'var(--wp--preset--color--black)': ORCIDiDIconBlack,
+	'var(--wp--preset--color--white)': ORCIDiDIconWhite,
 };
 
 const arXivProfileIcon = {
 	original: arXivProfileIconDefault,
 	black: arXivProfileIconBlack,
 	white: arXivProfileIconWhite,
-	['var(--wp--preset--color--black)']: arXivProfileIconBlack,
-	['var(--wp--preset--color--white)']: arXivProfileIconWhite,
+	'var(--wp--preset--color--black)': arXivProfileIconBlack,
+	'var(--wp--preset--color--white)': arXivProfileIconWhite,
 };
 
 export const AcademicIcon = ({ service, color, colorValue }) => {
@@ -34,7 +34,13 @@ export const AcademicIcon = ({ service, color, colorValue }) => {
 
 	const src = icon[color] || icon[colorValue] || icon.original;
 
-	return <div className='wp-block-academic-social-link__icon'>
-		<img className='wp-block-academic-social-link__icon-img' src={src} alt="" />
-	</div>;
-}
+	return (
+		<div className="wp-block-academic-social-link__icon">
+			<img
+				className="wp-block-academic-social-link__icon-img"
+				src={src}
+				alt=""
+			/>
+		</div>
+	);
+};

@@ -6,7 +6,7 @@ import variations from './variations';
 import edit from './edit';
 import metadata from './block.json';
 
-registerBlockType( metadata.name, {
+registerBlockType(metadata.name, {
 	edit,
 	variations,
-} );
+});

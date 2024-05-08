@@ -4809,7 +4809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.3.1":
+"classnames@npm:^2.3.1, classnames@npm:^2.5.1":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
   checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
@@ -14024,6 +14024,7 @@ __metadata:
     "@wordpress/prettier-config": "npm:^3.11.0"
     "@wordpress/scripts": "npm:^27.5.0"
     "@wordpress/stylelint-config": "npm:^21.37.0"
+    classnames: "npm:^2.5.1"
     eslint: "npm:^8.57.0"
     prettier: "npm:^3.2.5"
     stylelint: "npm:^14.5.1"
