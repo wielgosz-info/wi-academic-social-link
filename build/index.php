@@ -86,13 +86,13 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
 function wi_academic_social_link_get_icon( $service, $context ) {
 	$services = wi_academic_social_link_services();
 	if ( isset( $services[ $service ] ) && isset( $services[ $service ]['icon'] ) ) {
-		$color = isset( $context['iconColor'] ) ? $context['iconColor'] : null;
-		$color_value =  isset( $context['iconColorValue'] ) ? $context['iconColorValue'] : null;
+		$color       = isset( $context['iconColor'] ) ? $context['iconColor'] : null;
+		$color_value = isset( $context['iconColorValue'] ) ? $context['iconColorValue'] : null;
 
-		if ( isset( $services[ $service ]['icon'][$color] ) ) {
-			return $services[ $service ]['icon'][$color];
-		} elseif ( isset( $services[ $service ]['icon'][$color_value] ) ) {
-			return $services[ $service ]['icon'][$color_value];
+		if ( isset( $services[ $service ]['icon'][ $color ] ) ) {
+			return $services[ $service ]['icon'][ $color ];
+		} elseif ( isset( $services[ $service ]['icon'][ $color_value ] ) ) {
+			return $services[ $service ]['icon'][ $color_value ];
 		} else {
 			return $services[ $service ]['icon']['original'];
 		}
@@ -126,12 +126,12 @@ function wi_academic_social_link_get_name( $service ) {
  *
  * @return array
  */
-function wi_academic_social_link_services( ) {
+function wi_academic_social_link_services() {
 	$services_data = array(
-		'orcid-id' => array(
+		'orcid-id'      => array(
 			'name' => 'ORCID iD',
 			'icon' => array(
-				'original' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconvector.svg' ),
+				'original'                        => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconvector.svg' ),
 				'var(--wp--preset--color--black)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconbwvector.svg' ),
 				'var(--wp--preset--color--white)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCID-iD_icon_reversed_vector.svg' ),
 			),
@@ -139,7 +139,7 @@ function wi_academic_social_link_services( ) {
 		'arxiv-profile' => array(
 			'name' => 'arXiv Profile',
 			'icon' => array(
-				'original' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small.svg' ),
+				'original'                        => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small.svg' ),
 				'var(--wp--preset--color--black)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small-black.svg' ),
 				'var(--wp--preset--color--white)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small-white.svg' ),
 			),

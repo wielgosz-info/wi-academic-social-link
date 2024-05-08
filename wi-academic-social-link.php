@@ -27,9 +27,12 @@ require_once __DIR__ . '/build/index.php';
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function wi_academic_social_link_block_init() {
-	register_block_type( __DIR__ . '/build', array(
-		'render_callback' => 'wi_academic_social_link_render_block',
-	) );
+	register_block_type(
+		__DIR__ . '/build',
+		array(
+			'render_callback' => 'wi_academic_social_link_render_block',
+		)
+	);
 }
 add_action( 'init', 'wi_academic_social_link_block_init' );
 
@@ -38,12 +41,12 @@ add_action( 'init', 'wi_academic_social_link_block_init' );
  */
 function wi_academic_social_link_block_register_styles() {
 	if ( ! is_admin() && wp_style_is( 'wielgosz-info-wi-academic-social-link-style', 'registered' ) ) {
-		wp_deregister_style('wielgosz-info-wi-academic-social-link-style');
+		wp_deregister_style( 'wielgosz-info-wi-academic-social-link-style' );
 		wp_register_style(
 			'wielgosz-info-wi-academic-social-link-style',
 			plugins_url( 'build/style-index.css', __FILE__ ),
 			array(
-				'wp-block-social-links'
+				'wp-block-social-links',
 			),
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style-index.css' )
 		);
@@ -57,13 +60,13 @@ add_action( 'enqueue_block_assets', 'wi_academic_social_link_block_register_styl
  * @param array $metadata The block type metadata.
  * @return array The block type metadata.
  */
-function wi_add_academic_social_link_to_social_links( $metadata ) {
-	if ( $metadata['name'] === 'core/social-links' ) {
-		if ( ! in_array( 'wielgosz-info/wi-academic-social-link', $metadata['allowedBlocks'] ) ) {
+function wi_academic_social_link_add_to_social_links( $metadata ) {
+	if ( 'core/social-links' === $metadata['name'] ) {
+		if ( ! in_array( 'wielgosz-info/wi-academic-social-link', $metadata['allowedBlocks'], true ) ) {
 			$metadata['allowedBlocks'][] = 'wielgosz-info/wi-academic-social-link';
 		}
 	}
 
 	return $metadata;
 }
-add_filter( 'block_type_metadata', 'wi_add_academic_social_link_to_social_links' );
+add_filter( 'block_type_metadata', 'wi_academic_social_link_add_to_social_links' );
