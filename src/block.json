@@ -39,6 +39,6 @@
 		}
 	},
 	"editorScript": "file:./index.js",
-	"editorStyle": "wp-block-social-link-editor",
+	"editorStyle": ["wp-block-social-link-editor", "file:./index.css"],
 	"style": "file:./style-index.css"
 }

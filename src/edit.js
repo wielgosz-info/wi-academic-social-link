@@ -29,7 +29,21 @@ import { keyboardReturn } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import { getIconBySite, getNameBySite } from './social-list';
+import './editor.scss';
+import { AcademicIcon } from './icons';
+import variations from './variations';
+
+/**
+ * Retrieves the display name for the social service.
+ *
+ * @param {string} name key for a social service (lowercase slug)
+ *
+ * @return {string} Display name for social service
+ */
+const getNameBySite = ( name ) => {
+	const variation = variations.find( ( v ) => v.name === name );
+	return variation ? variation.title : __( 'Social Icon' );
+};
 
 const SocialLinkURLPopover = ( {
 	url,
@@ -102,7 +116,6 @@ const SocialLinkEdit = ( {
 	const [ showURLPopover, setPopover ] = useState( false );
 	const classes = classNames( 'wp-block-social-link', 'wp-social-link', 'wp-social-link-' + service, {
 		'wp-social-link__is-incomplete': ! url,
-		[ `has-${ iconColor }-color` ]: iconColor,
 		[ `has-${ iconBackgroundColor }-background-color` ]:
 			iconBackgroundColor,
 	} );
@@ -111,13 +124,11 @@ const SocialLinkEdit = ( {
 	// re-renders when the popover's anchor updates.
 	const [ popoverAnchor, setPopoverAnchor ] = useState( null );
 
-	const IconComponent = getIconBySite( service );
 	const socialLinkName = getNameBySite( service );
 	const socialLinkLabel = label ?? socialLinkName;
 	const blockProps = useBlockProps( {
 		className: classes,
 		style: {
-			color: iconColorValue,
 			backgroundColor: iconBackgroundColorValue,
 		},
 	} );
@@ -162,7 +173,7 @@ const SocialLinkEdit = ( {
 					ref={ setPopoverAnchor }
 					onClick={ () => setPopover( true ) }
 				>
-					<IconComponent />
+					<AcademicIcon service={service} color={iconColor} colorValue={iconColorValue} />
 					<span
 						className={ classNames( 'wp-block-social-link-label', {
 							'screen-reader-text': ! showLabels,

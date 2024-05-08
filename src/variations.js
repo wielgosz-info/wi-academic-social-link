@@ -1,5 +1,5 @@
 import {
-	ORCIDiDIcon
+	AcademicIcon
 } from './icons';
 
 const variations = [
@@ -8,7 +8,13 @@ const variations = [
 		name: 'orcid-id',
 		attributes: { service: 'orcid-id' },
 		title: 'ORCID iD',
-		icon: ORCIDiDIcon,
+		icon: <AcademicIcon service='orcid-id' color='original' />,
+	},
+	{
+		name: 'arxiv-profile',
+		attributes: { service: 'arxiv-profile' },
+		title: 'arXiv Profile',
+		icon: <AcademicIcon service='arxiv-profile' color='original' />,
 	},
 ];
 

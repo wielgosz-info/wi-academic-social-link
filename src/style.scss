@@ -1,12 +1,12 @@
-.wp-block-social-links:not(.is-style-logos-only) {
-	.wp-social-link-orcid-id {
-		background-color: #fff;
-		color: #A6CE39;
-	}
+.wp-block-academic-social-link__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1em;
+	height: 1em;
 }
 
-.wp-block-social-links.is-style-logos-only {
-	.wp-social-link-orcid-id {
-		color: #A6CE39;
-	}
+.wp-block-academic-social-link__icon-img {
+	height: 83.3334%;
+	min-height: 16px;
 }

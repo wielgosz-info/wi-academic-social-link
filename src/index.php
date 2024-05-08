@@ -49,7 +49,7 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
 		$url = 'https://' . $url;
 	}
 
-	$icon               = wi_academic_social_link_get_icon( $service );
+	$icon               = wi_academic_social_link_get_icon( $service, $block->context );
 	$wrapper_attributes = get_block_wrapper_attributes(
 		array(
 			'class' => 'wp-social-link wp-block-social-link wp-social-link-' . $service . block_core_social_link_get_color_classes( $block->context ),
@@ -81,12 +81,21 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
  *
  * @param string $service The service icon.
  *
- * @return string SVG Element for service icon.
+ * @return string DIV Element for service icon.
  */
-function wi_academic_social_link_get_icon( $service ) {
+function wi_academic_social_link_get_icon( $service, $context ) {
 	$services = wi_academic_social_link_services();
 	if ( isset( $services[ $service ] ) && isset( $services[ $service ]['icon'] ) ) {
-		return $services[ $service ]['icon'];
+		$color = isset( $context['iconColor'] ) ? $context['iconColor'] : null;
+		$color_value =  isset( $context['iconColorValue'] ) ? $context['iconColorValue'] : null;
+
+		if ( isset( $services[ $service ]['icon'][$color] ) ) {
+			return $services[ $service ]['icon'][$color];
+		} elseif ( isset( $services[ $service ]['icon'][$color_value] ) ) {
+			return $services[ $service ]['icon'][$color_value];
+		} else {
+			return $services[ $service ]['icon']['original'];
+		}
 	}
 
 	return $services['share']['icon'];
@@ -121,7 +130,19 @@ function wi_academic_social_link_services( ) {
 	$services_data = array(
 		'orcid-id' => array(
 			'name' => 'ORCID iD',
-			'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="m22 12c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10 10 4.477 10 10zm-11.492-3.82h3.25c3.094 0 4.453 2.211 4.453 4.187 0 2.149-1.68 4.188-4.438 4.188h-3.265zm-1.766 8.367h-1.203v-8.367h1.203zm2.969-1.078h1.914c2.727 0 3.352-2.071 3.352-3.102 0-1.68-1.071-3.101-3.414-3.101h-1.852zm-2.781-9.032c0 .43-.352.79-.789.79-.438 0-.789-.36-.789-.79 0-.437.351-.789.789-.789.437 0 .789.36.789.789z" fill-rule="evenodd"/></svg>',
+			'icon' => array(
+				'original' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconvector.svg' ),
+				'var(--wp--preset--color--black)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconbwvector.svg' ),
+				'var(--wp--preset--color--white)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCID-iD_icon_reversed_vector.svg' ),
+			),
+		),
+		'arxiv-profile' => array(
+			'name' => 'arXiv Profile',
+			'icon' => array(
+				'original' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small.svg' ),
+				'var(--wp--preset--color--black)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small-black.svg' ),
+				'var(--wp--preset--color--white)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small-white.svg' ),
+			),
 		),
 	);
 
