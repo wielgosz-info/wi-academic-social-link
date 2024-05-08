@@ -16,7 +16,7 @@ on:
 
 jobs:
   assets:
-    name: Build theme assets
+    name: Build plugin assets
     runs-on: ubuntu-latest
     env:
       YARN_ENABLE_HARDENED_MODE: 1
