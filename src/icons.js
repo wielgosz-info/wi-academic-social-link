@@ -1,10 +1,10 @@
 // We're importing original, unmodified SVGs, since that what brand guidelines usually require.
-import ORCIDiDIconDefault from './ORCIDiD_iconvector.svg';
-import ORCIDiDIconBlack from './ORCIDiD_iconbwvector.svg';
-import ORCIDiDIconWhite from './ORCID-iD_icon_reversed_vector.svg';
-import arXivProfileIconDefault from './arxiv-logomark-small.svg';
-import arXivProfileIconBlack from './arxiv-logomark-small-black.svg';
-import arXivProfileIconWhite from './arxiv-logomark-small-white.svg';
+import ORCIDiDIconDefault from '../assets/ORCIDiD_iconvector.svg';
+import ORCIDiDIconBlack from '../assets/ORCIDiD_iconbwvector.svg';
+import ORCIDiDIconWhite from '../assets/ORCID-iD_icon_reversed_vector.svg';
+import arXivProfileIconDefault from '../assets/arxiv-logomark-small.svg';
+import arXivProfileIconBlack from '../assets/arxiv-logomark-small-black.svg';
+import arXivProfileIconWhite from '../assets/arxiv-logomark-small-white.svg';
 
 const ORCIDiDIcon = {
 	original: ORCIDiDIconDefault,

@@ -7,7 +7,6 @@
  * @package WI\AcademicSocialLink
  */
 
-
 /**
  * Renders the `wielgosz-info/wi-academic-social-link` block on server.
  *
@@ -45,7 +44,7 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
 	 * Prepend URL with https:// if it doesn't appear to contain a scheme
 	 * and it's not a relative link starting with //.
 	 */
-	if ( ! parse_url( $url, PHP_URL_SCHEME ) && ! str_starts_with( $url, '//' ) ) {
+	if ( ! wp_parse_url( $url, PHP_URL_SCHEME ) && ! str_starts_with( $url, '//' ) ) {
 		$url = 'https://' . $url;
 	}
 
@@ -57,7 +56,7 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
 		)
 	);
 
-	$link  = '<li ' . $wrapper_attributes . '>';
+	$link = '<li ' . $wrapper_attributes . '>';
 	$link .= '<a href="' . esc_url( $url ) . '" class="wp-block-social-link-anchor">';
 	$link .= $icon;
 	$link .= '<span class="wp-block-social-link-label' . ( $show_labels ? '' : ' screen-reader-text' ) . '">' . esc_html( $label ) . '</span>';
@@ -80,6 +79,7 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
  * @since 0.1.0
  *
  * @param string $service The service icon.
+ * @param array  $context The block context.
  *
  * @return string DIV Element for service icon.
  */
@@ -89,12 +89,23 @@ function wi_academic_social_link_get_icon( $service, $context ) {
 		$color       = isset( $context['iconColor'] ) ? $context['iconColor'] : null;
 		$color_value = isset( $context['iconColorValue'] ) ? $context['iconColorValue'] : null;
 
+		$icon = null;
 		if ( isset( $services[ $service ]['icon'][ $color ] ) ) {
-			return $services[ $service ]['icon'][ $color ];
+			$icon = $services[ $service ]['icon'][ $color ];
 		} elseif ( isset( $services[ $service ]['icon'][ $color_value ] ) ) {
-			return $services[ $service ]['icon'][ $color_value ];
+			$icon = $services[ $service ]['icon'][ $color_value ];
 		} else {
-			return $services[ $service ]['icon']['original'];
+			$icon = $services[ $service ]['icon']['original'];
+		}
+
+		if ( $icon ) {
+			return sprintf( '<div class="wp-block-academic-social-link__icon">
+					<img
+						class="wp-block-academic-social-link__icon-img"
+						src="%s"
+						alt=""
+					/>
+				</div>', $icon );
 		}
 	}
 
@@ -131,17 +142,21 @@ function wi_academic_social_link_services() {
 		'orcid-id'      => array(
 			'name' => 'ORCID iD',
 			'icon' => array(
-				'original'                        => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconvector.svg' ),
-				'var(--wp--preset--color--black)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCIDiD_iconbwvector.svg' ),
-				'var(--wp--preset--color--white)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/ORCID-iD_icon_reversed_vector.svg' ),
+				'original'                        => plugin_dir_url( __DIR__ ) . 'assets/ORCIDiD_iconvector.svg',
+				'var(--wp--preset--color--black)' => plugin_dir_url( __DIR__ ) . 'assets/ORCIDiD_iconbwvector.svg',
+				'var(--wp--preset--color--white)' => plugin_dir_url( __DIR__ ) . 'assets/ORCID-iD_icon_reversed_vector.svg',
+				'black'                           => plugin_dir_url( __DIR__ ) . 'assets/ORCIDiD_iconbwvector.svg',
+				'white'                           => plugin_dir_url( __DIR__ ) . 'assets/ORCID-iD_icon_reversed_vector.svg',
 			),
 		),
 		'arxiv-profile' => array(
 			'name' => 'arXiv Profile',
 			'icon' => array(
-				'original'                        => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small.svg' ),
-				'var(--wp--preset--color--black)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small-black.svg' ),
-				'var(--wp--preset--color--white)' => file_get_contents( plugin_dir_path( __FILE__ ) . '../src/icons/arxiv-logomark-small-white.svg' ),
+				'original'                        => plugin_dir_url( __DIR__ ) . 'assets/arxiv-logomark-small.svg',
+				'var(--wp--preset--color--black)' => plugin_dir_url( __DIR__ ) . 'assets/arxiv-logomark-small-black.svg',
+				'var(--wp--preset--color--white)' => plugin_dir_url( __DIR__ ) . 'assets/arxiv-logomark-small-white.svg',
+				'black'                           => plugin_dir_url( __DIR__ ) . 'assets/arxiv-logomark-small-black.svg',
+				'white'                           => plugin_dir_url( __DIR__ ) . 'assets/arxiv-logomark-small-white.svg',
 			),
 		),
 	);
