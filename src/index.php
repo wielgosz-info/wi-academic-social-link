@@ -56,7 +56,7 @@ function wi_academic_social_link_render_block( $attributes, $content, $block ) {
 		)
 	);
 
-	$link = '<li ' . $wrapper_attributes . '>';
+	$link  = '<li ' . $wrapper_attributes . '>';
 	$link .= '<a href="' . esc_url( $url ) . '" class="wp-block-social-link-anchor">';
 	$link .= $icon;
 	$link .= '<span class="wp-block-social-link-label' . ( $show_labels ? '' : ' screen-reader-text' ) . '">' . esc_html( $label ) . '</span>';
@@ -99,13 +99,16 @@ function wi_academic_social_link_get_icon( $service, $context ) {
 		}
 
 		if ( $icon ) {
-			return sprintf( '<div class="wp-block-academic-social-link__icon">
+			return sprintf(
+				'<div class="wp-block-academic-social-link__icon">
 					<img
 						class="wp-block-academic-social-link__icon-img"
 						src="%s"
 						alt=""
 					/>
-				</div>', $icon );
+				</div>',
+				$icon
+			);
 		}
 	}
 
